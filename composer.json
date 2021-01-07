@@ -1,0 +1,10 @@
+{
+    "name": "youri/php-mvc-objet",
+    "type": "project",
+    "autoload":{
+        "psr-4":{
+            "PhpMvcObjet\\" : "src"
+        }
+    },
+    "require": {}
+}
