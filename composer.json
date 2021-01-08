@@ -6,5 +6,7 @@
             "PhpMvcObjet\\" : "src"
         }
     },
-    "require": {}
+    "require": {
+        "klein/klein": "^2.1"
+    }
 }
