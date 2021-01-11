@@ -2,9 +2,14 @@
 
 require_once "vendor/autoload.php";
 
-use PhpMvcObjet\Controllers\FrontController;
+use PhpMvcObjet\controllers\FrontController;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
-$fc = new FrontController();
+$loader = new FilesystemLoader(__DIR__ . '/src/views');
+$twig = new Environment($loader, ['cache' => false]);
+
+$fc = new FrontController($twig);
 
 $base = dirname($_SERVER['PHP_SELF']);
 

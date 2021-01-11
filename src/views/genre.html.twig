@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Genre {% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+{% for genre in genres %}
+{{genre.name}}
+{% endfor %}
+{% endblock %}
