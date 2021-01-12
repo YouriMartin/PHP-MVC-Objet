@@ -34,4 +34,13 @@ $klein->respond('GET', '/genres', function () use ($fc) {
     $fc->genres();
 });
 
+$klein->respond('GET', '/actors', function () use ($fc) {
+    // use est une manière d'effectuer une closure en PHP 
+    $fc->actors();
+});
+
+$klein->respond('GET', '/acteurs/[:id]', function ($request) use ($fc) {
+    $url = $request->id;
+    $fc->Oneactor($url);
+});
 $klein->dispatch();
