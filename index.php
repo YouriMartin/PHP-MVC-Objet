@@ -21,9 +21,6 @@ if (ltrim($base, '/')) {
 
 $klein = new \Klein\Klein();
 
-$klein->respond('GET', '/toto', function () {
-    return 'Hello toto !!!!';
-});
 
 $klein->respond('GET', '/jam', function () {
     return 'Hello jam !!!!';
@@ -39,8 +36,19 @@ $klein->respond('GET', '/actors', function () use ($fc) {
     $fc->actors();
 });
 
-$klein->respond('GET', '/acteurs/[:id]', function ($request) use ($fc) {
+$klein->respond('GET', '/actors/[:id]', function ($request) use ($fc) {
     $url = $request->id;
     $fc->Oneactor($url);
 });
+
+$klein->respond('GET', '/directors', function () use ($fc) {
+    // use est une manière d'effectuer une closure en PHP 
+    $fc->directors();
+});
+
+$klein->respond('GET', '/directors/[:id]', function ($request) use ($fc) {
+    $directorId = $request->id;
+    $fc->Onedirector($directorId);
+});
+
 $klein->dispatch();

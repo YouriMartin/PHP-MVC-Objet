@@ -7,12 +7,17 @@
 {% block head %}{% endblock %}
 
 {% block content %}
+
 	{% for actor in actor1 %}
-		{{actor.first_name}}
-		{{actor.last_name}}
+		<div class="card m-2 text-center">
+			<div class="card-body">
+				<h5 class="card-title">{{actor.first_name}} {{actor.last_name}}</h5>
+				<a href="/Youri/PHP/PhpMvcObjet/actors/{{actor.id - 1}}" class="btn m-2 btn-dark">Aller sur la fiche</a>
+			</div>
+		</div>
 	{% endfor %}
-
-	{{oneactor1.first_name}}
-	{{oneactor1.last_name}}
-
+	<h2 class="text-success">
+		{{oneactor1.first_name}}
+		{{oneactor1.last_name}}
+	</h2>
 {% endblock %}
