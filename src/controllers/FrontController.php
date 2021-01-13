@@ -5,6 +5,8 @@ namespace PhpMvcObjet\controllers;
 use PhpMvcObjet\models\Services\GenreService;
 use PhpMvcObjet\models\Services\ActorService;
 use PhpMvcObjet\models\Services\DirectorService;
+use PhpMvcObjet\models\Services\MovieService;
+
 
 
 use Twig\Environment;
@@ -15,6 +17,7 @@ class FrontController
     private $genreService;
     private $actorService;
     private $directorService;
+    private $movieService;
 
     public function __construct($twig)
     {
@@ -22,9 +25,13 @@ class FrontController
         $this->genreService = new GenreService();
         $this->actorService = new ActorService();
         $this->directorService = new DirectorService();
+        $this->movieService = new MovieService();
         $this->twig = $twig;
     }
-  
+    public function acceuil()
+    {
+        echo $this->twig->render('base.html.twig');
+    }
     public function genres()
     {
         /* 
@@ -49,11 +56,11 @@ class FrontController
         echo $this->twig->render('actor.html.twig', ["actor1" => $actors]);
     }
 
-    public function Oneactor($url)
+    public function Oneactor($id)
     {
-        $actors = $this->actorService->getAllActors();
-        $oneactor =  $actors[$url];
-        echo $this->twig->render('actor.html.twig', ["oneactor1" => $oneactor]);
+        $actor = $this->actorService->getOneActor($id);
+
+        echo $this->twig->render('actor.html.twig', ["actor1" => $actor]);
     }
 
     public function directors()
@@ -63,10 +70,22 @@ class FrontController
         echo $this->twig->render('director.html.twig', ["director1" => $directors]);
     }
 
-    public function Onedirector($directorId)
+    public function Onedirector($id)
     {
-        $directors = $this->directorService->getAllDirectors();
-        $onedirector =  $directors[$directorId];
-        echo $this->twig->render('director.html.twig', ["onedirector1" => $onedirector]);
+        $director = $this->directorService->getOneDirector($id);
+
+        echo $this->twig->render('director.html.twig', ["director1" => $director]);
+    }
+
+    public function movies()
+    {
+        $movies = $this->movieService->getAllMovies();
+
+        echo $this->twig->render('movie.html.twig', ["movies" => $movies]);
+    }
+
+    public function movie($id) {
+        $movie = $this->movieService->getById($id);
+        echo $this->twig->render('movie.html.twig', ["movie" => $movie ]);   
     }
 }

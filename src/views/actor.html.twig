@@ -1,23 +1,22 @@
 {% extends "base.html.twig" %}
-
 {% block title %}
 	Actor
 {% endblock %}
-
 {% block head %}{% endblock %}
 
 {% block content %}
 
 	{% for actor in actor1 %}
-		<div class="card m-2 text-center">
+		<div class="card m-2 text-center shadow-sm">
 			<div class="card-body">
-				<h5 class="card-title">{{actor.first_name}} {{actor.last_name}}</h5>
-				<a href="/Youri/PHP/PhpMvcObjet/actors/{{actor.id - 1}}" class="btn m-2 btn-dark">Aller sur la fiche</a>
+				<h5 class="card-title">{{actor.first_name}}
+					{{actor.last_name}}</h5>
+				<a href="/Youri/PHP/PhpMvcObjet/actors/{{actor.id}}" class="btn m-2 btn-dark">Aller sur la fiche</a>
 			</div>
 		</div>
 	{% endfor %}
 	<h2 class="text-success">
-		{{oneactor1.first_name}}
-		{{oneactor1.last_name}}
+		{{actor1.first_name}}
+		{{actor1.last_name}}
 	</h2>
 {% endblock %}

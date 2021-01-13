@@ -3,16 +3,18 @@
 	<head>
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
-		{% block head %}
-			<title>MonSite -
-				{% block title %}{% endblock %}
-			</title>
-		{% endblock %}
+		<title>
+			{% block title %}MonSite
+			{% endblock %}
+		</title>
+		{% block head %}{% endblock %}
 	</head>
 	<body style="height: 100vh;">
 
 		<div class="navbar navbar-dark bg-dark">
-			<div class="d-inline-flex w-100  justify-content-evenly">
+			<div class="d-inline-flex w-100  justify-content-center">
+				<a href="/Youri/PHP/PhpMvcObjet/" class="btn  m-2 border border-light bg-dark text-white">Acceuil</a>
+				<a href="/Youri/PHP/PhpMvcObjet/movies" class="btn m-2 border border-light bg-dark text-white">Movie</a>
 				<a href="/Youri/PHP/PhpMvcObjet/actors" class="btn m-2 border border-light bg-dark text-white">Actor</a>
 				<a href="/Youri/PHP/PhpMvcObjet/directors" class="btn m-2 border border-light bg-dark text-white">Director</a>
 			</div>

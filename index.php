@@ -22,8 +22,8 @@ if (ltrim($base, '/')) {
 $klein = new \Klein\Klein();
 
 
-$klein->respond('GET', '/jam', function () {
-    return 'Hello jam !!!!';
+$klein->respond('GET', '/', function () use ($fc) {
+    $fc->acceuil();
 });
 
 $klein->respond('GET', '/genres', function () use ($fc) {
@@ -37,8 +37,8 @@ $klein->respond('GET', '/actors', function () use ($fc) {
 });
 
 $klein->respond('GET', '/actors/[:id]', function ($request) use ($fc) {
-    $url = $request->id;
-    $fc->Oneactor($url);
+    $id = $request->id;
+    $fc->Oneactor($id);
 });
 
 $klein->respond('GET', '/directors', function () use ($fc) {
@@ -47,8 +47,17 @@ $klein->respond('GET', '/directors', function () use ($fc) {
 });
 
 $klein->respond('GET', '/directors/[:id]', function ($request) use ($fc) {
-    $directorId = $request->id;
-    $fc->Onedirector($directorId);
+    $id = $request->id;
+    $fc->Onedirector($id);
 });
+
+$klein->respond('GET', '/movies', function () use ($fc) {
+
+    $fc->movies();
+});
+
+$klein->respond('GET','/movies/[:id]', function($request) use($fc) {
+    $fc->movie($request->id); 
+ });
 
 $klein->dispatch();

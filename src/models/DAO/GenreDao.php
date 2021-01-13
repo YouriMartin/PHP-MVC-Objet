@@ -21,7 +21,9 @@ class GenreDao extends BaseDao
             throw new \PDOException($stmt->errorInfo()[2]);
         }
     }
-
+    public function findById()
+    {
+    }
     public function createObjectFromFields($fields): genre
     {
         //

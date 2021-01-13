@@ -22,4 +22,10 @@ class DirectorService
         $directors = $this->directorDao->findAll();
         return $directors;
     }
+
+    public function getOneDirector($id)
+    {
+        $director = $this->directorDao->findById($id);
+        return $director;
+    }
 }

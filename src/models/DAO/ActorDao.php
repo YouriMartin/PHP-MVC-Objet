@@ -22,6 +22,17 @@ class ActorDao extends BaseDao
         }
     }
 
+    public function findById($id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM actor WHERE id = :id");
+        $actor = $stmt->execute([':id' => $id]);
+
+        if ($actor) {
+            return $this->createObjectFromFields($stmt->fetch(\PDO::FETCH_ASSOC));
+        } else {
+            throw new \PDOException($stmt->errorInfo()[2]);
+        }
+    }
 
     public function createObjectFromFields($fields): actor
     {
