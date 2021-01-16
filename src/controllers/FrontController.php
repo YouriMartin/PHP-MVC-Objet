@@ -84,8 +84,14 @@ class FrontController
         echo $this->twig->render('movie.html.twig', ["movies" => $movies]);
     }
 
-    public function movie($id) {
-        $movie = $this->movieService->getById($id);
-        echo $this->twig->render('movie.html.twig', ["movie" => $movie ]);   
+    public function movie($id)
+    {
+        $movie = $this->movieService->getOneMovie($id);
+        echo $this->twig->render('onemovie.html.twig', ["movie" => $movie]);
+    }
+
+    public function addmovie()
+    {
+        echo $this->twig->render('addmovie.html.twig');
     }
 }

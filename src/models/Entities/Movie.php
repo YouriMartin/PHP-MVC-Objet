@@ -74,23 +74,30 @@ class Movie
         return $this;
     }
 
-    public function getGenre_id(): int
-    {
-        return $this->genre_id;
+    public function getGenre() : Genre {
+        return $this->genre;
     }
-    public function setGenre_id(int $genre_id): Movie
-    {
-        $this->genre_id = $genre_id;
+
+    public function setGenre(Genre $genre) : Movie {
+        $this->genre = $genre;
         return $this;
     }
 
-    public function getDirector_id(): string
-    {
-        return $this->director_id;
+    public function getDirector() : Director {
+        return $this->director;
     }
-    public function setDirector_id(string $director_id): Movie
-    {
-        $this->director_id = $director_id;
+
+    public function setDirector(Director $director) : Movie {
+        $this->director = $director;
+        return $this;
+    }
+
+    public function getActor() : Actor {
+        return $this->actor;
+    }
+
+    public function setActor($actor) : Movie {
+        $this->actor = $actor;
         return $this;
     }
 }

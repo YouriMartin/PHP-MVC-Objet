@@ -19,45 +19,54 @@ use PhpMvcObjet\models\Entities\Movie;
 class MovieService
 {
     private $movieDao;
-    private $actorDao;
     private $genreDao;
+    private $actorDao;
     private $directorDao;
 
     public function __construct()
     {
-        $this->movieDao = new MovieDao();
-        $this->actorDao = new ActorDao();
-        $this->directorDao = new DirectorDao();
-        $this->genreDao = new GenreDao();
-    }
 
+        $this->movieDao = new MovieDao();
+        $this->genreDao = new GenreDao();
+        $this->directorDao = new DirectorDao();
+        $this->actorDao = new ActorDao();
+    }
     public function getAllMovies()
     {
-        $movies = $this->movieDao->findAll();
-        return $movies;
+        $movie = $this->movieDao->findAll();
+        return $movie;
     }
 
-    public function getbyId($id)
+    public function getOneMovie($id)
     {
+
         $movie = $this->movieDao->findById($id);
-        return $movie;
-
-
-        $actors = $this->actorDao->findByMovie($id);
-        foreach ($actors as $actor) {
-            $movie->addActor($actor);
-        }
+        //print_r($movie);
 
         $genre = $this->genreDao->findByMovie($id);
         $movie->setGenre($genre);
-
+        //print_r($movie);
         $director = $this->directorDao->findByMovie($id);
         $movie->setDirector($director);
 
-        $comments = $this->commentDao->findByMovie($id);
+        $actors = $this->actorDao->findByMovie($id);
+        $movie->setActor($actors);
 
-        return [
-            'movie' => $movie
-        ];
+
+        return $movie;
+    }
+
+    public function create($movieData)
+    {
+
+        $movie = $this->movieDao->createObjectFromFields($movieData);
+
+        $genre = $this->genreDao->findByMovie($movieData['genre']);
+        $movie->setGenre($genre);
+
+        $director = $this->directorDao->findByMovie($movieData['director']);
+        $movie->setDirector($director);
+
+        $this->movieDao->create($movie);
     }
 }

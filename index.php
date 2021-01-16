@@ -56,8 +56,13 @@ $klein->respond('GET', '/movies', function () use ($fc) {
     $fc->movies();
 });
 
-$klein->respond('GET','/movies/[:id]', function($request) use($fc) {
-    $fc->movie($request->id); 
- });
+$klein->respond('GET', '/movies/[:id]', function ($request) use ($fc) {
+    $fc->movie($request->id);
+});
+
+$klein->respond('GET', '/addmovie', function () use ($fc) {
+    $fc->addmovie();
+});
+
 
 $klein->dispatch();

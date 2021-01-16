@@ -33,7 +33,26 @@ class ActorDao extends BaseDao
             throw new \PDOException($stmt->errorInfo()[2]);
         }
     }
+    public function findByMovie($movieId)
+    {
 
+        $stmt = $this->db->prepare("
+        SELECT id, first_name, last_name
+        FROM actor
+        INNER JOIN movies_actors ON movies_actors.actor_id = actor.id
+        WHERE movie_id = :movieId");
+        $res = $stmt->execute([':movieId' => $movieId]);
+
+        if ($res) {
+            $actors = [];
+            while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
+                $actors[] = $this->createObjectFromFields($row);
+            }
+            return $actors;
+        } else {
+            throw new \PDOException($stmt->errorInfo()[2]);
+        }
+    }
     public function createObjectFromFields($fields): actor
     {
         //
