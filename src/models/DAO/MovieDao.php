@@ -54,8 +54,8 @@ class MovieDao extends BaseDao
     {
 
         $stmt = $this->db->prepare("
-        INSERT INTO movie(title, description, duration, date, cover_image, genre_id, director_id) 
-        VALUES(:title, :description, :duration, :date, :cover_image, :genre_id, :director_id)");
+        INSERT INTO movie(title, description, duration, date, cover_image, genre_id, director_id, actor_id) 
+        VALUES(:title, :description, :duration, :date, :cover_image, :genre_id, :director_id, :actor_id)");
 
         $res = $stmt->execute([
             ':title' => $movie->getTitle(),
@@ -64,7 +64,9 @@ class MovieDao extends BaseDao
             ':date' => $movie->getDate(),
             ':cover_image' => $movie->getCover_Image(),
             ':genre_id' => $movie->getGenre()->getId(),
-            ':director_id' => $movie->getDirector()->getId()
+            ':director_id' => $movie->getDirector()->getId(),
+            ':actor_id' => $movie->getActor()->getId()
+
         ]);
 
         if (!$res) {

@@ -87,6 +87,9 @@ class FrontController
     public function movie($id)
     {
         $movie = $this->movieService->getOneMovie($id);
+        echo "<pre>";
+        var_dump($movie);
+        echo "</pre>";
         echo $this->twig->render('onemovie.html.twig', ["movie" => $movie]);
     }
 

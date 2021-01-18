@@ -11,8 +11,9 @@ class Movie
     private $duration;
     private $date;
     private $cover_image;
-    private $genre_id;
-    private $director_id;
+    private $genre;
+    private $director;
+    private $actor;
 
     public function getId(): int
     {
@@ -74,30 +75,47 @@ class Movie
         return $this;
     }
 
-    public function getGenre() : Genre {
+    public function getGenre(): Genre
+    {
         return $this->genre;
     }
 
-    public function setGenre(Genre $genre) : Movie {
+    public function setGenre(Genre $genre): Movie
+    {
         $this->genre = $genre;
         return $this;
     }
 
-    public function getDirector() : Director {
+    public function getDirector(): Director
+    {
         return $this->director;
     }
 
-    public function setDirector(Director $director) : Movie {
+    public function setDirector(Director $director): Movie
+    {
         $this->director = $director;
         return $this;
     }
 
-    public function getActor() : Actor {
+    public function getActor(): Actor
+    {
         return $this->actor;
     }
 
-    public function setActor($actor) : Movie {
+    public function setActor($actor): Movie
+    {
         $this->actor = $actor;
         return $this;
+    }
+    public function addActor(actor $actor): void
+    {
+        if (is_array($this->actors) || is_object($this->actors)) {
+            foreach ($this->actors as $a) {
+                if ($a->getId() == $actor->getId()) {
+                    return;
+                }
+            }
+        }
+        $this->actors[] = $actor;
     }
 }

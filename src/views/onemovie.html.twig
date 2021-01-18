@@ -15,8 +15,12 @@
 				<h5 class="card-title m-3">{{movie.title}}</h5>
 				<div class="d-inline-flex">
 					<h6 class="card-text m-2">Actor :
-						{{movie.actors.first_name}}
-						{{movie.actors.last_name}}
+						{% for actor in movie.actors %}
+							<p >
+								{{actor.first_name}}
+								{{actor.last_name}}
+							</p>
+						{% endfor %}
 					</h6>
 					<h6 class="card-text m-2">Director :
 						{{movie.director.first_name}}
@@ -46,5 +50,4 @@
 			</div>
 		</div>
 	</div>
-
 {% endblock %}
