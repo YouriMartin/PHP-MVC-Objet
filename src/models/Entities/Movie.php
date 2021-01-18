@@ -13,13 +13,13 @@ class Movie
     private $cover_image;
     private $genre;
     private $director;
-    private $actor;
+   private $actor;
 
     public function getId(): int
     {
         return $this->id;
     }
-    public function setId(int $id): Movie
+    public function setId($id): Movie
     {
         $this->id = $id;
         return $this;
@@ -107,10 +107,10 @@ class Movie
         $this->actor = $actor;
         return $this;
     }
-    public function addActor(actor $actor): void
+    public function addActor(Actor $actor): void
     {
-        if (is_array($this->actors) || is_object($this->actors)) {
-            foreach ($this->actors as $a) {
+        if (is_array($this->actor) || is_object($this->actor)) {
+            foreach ($this->actor as $a) {
                 if ($a->getId() == $actor->getId()) {
                     return;
                 }

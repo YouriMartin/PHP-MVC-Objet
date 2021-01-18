@@ -2,6 +2,7 @@
 
 require_once "vendor/autoload.php";
 
+use PhpMvcObjet\controllers\BackController;
 use PhpMvcObjet\controllers\FrontController;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -10,6 +11,7 @@ $loader = new FilesystemLoader(__DIR__ . '/src/views');
 $twig = new Environment($loader, ['cache' => false]);
 
 $fc = new FrontController($twig);
+$bc = new BackController($twig);
 
 $base = dirname($_SERVER['PHP_SELF']);
 
@@ -60,9 +62,9 @@ $klein->respond('GET', '/movies/[:id]', function ($request) use ($fc) {
     $fc->movie($request->id);
 });
 
-$klein->respond('GET', '/addmovie', function () use ($fc) {
-    $fc->addmovie();
-});
 
+$klein->respond('POST', '/addMovie', function($request,$post) use($bc) {
+    $bc->addMovie($request->paramsPost());
+});
 
 $klein->dispatch();

@@ -90,10 +90,11 @@ class FrontController
         echo "<pre>";
         var_dump($movie);
         echo "</pre>";
+
         echo $this->twig->render('onemovie.html.twig', ["movie" => $movie]);
     }
 
-    public function addmovie()
+    public function addMovie()
     {
         echo $this->twig->render('addmovie.html.twig');
     }
