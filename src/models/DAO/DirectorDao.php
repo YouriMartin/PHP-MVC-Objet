@@ -36,13 +36,18 @@ class DirectorDao extends BaseDao
             throw new \PDOException($stmt->errorInfo()[2]);
         }
     }
-    public function findById($id)
+    public function findById($id): Director
     {
-        $stmt = $this->db->prepare("SELECT * FROM director WHERE id = :id");
-        $director = $stmt->execute([':id' => $id]);
+        $stmt = $this->db->prepare("
+            SELECT id, first_name , last_name 
+            FROM director
+            WHERE id = :id
+        ");
 
-        if ($director) {
-            return $this->createObjectFromFields($stmt->fetch(\PDO::FETCH_ASSOC));
+        $res = $stmt->execute([':id' => $id]);
+
+        if ($res) {
+            return $stmt->fetchObject(Director::class);
         } else {
             throw new \PDOException($stmt->errorInfo()[2]);
         }

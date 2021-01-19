@@ -87,15 +87,16 @@ class FrontController
     public function movie($id)
     {
         $movie = $this->movieService->getOneMovie($id);
-        echo "<pre>";
-        var_dump($movie);
-        echo "</pre>";
+       
 
         echo $this->twig->render('onemovie.html.twig', ["movie" => $movie]);
     }
 
-    public function addMovie()
+    public function Formaddmovie()
     {
-        echo $this->twig->render('addmovie.html.twig');
+        $genres = $this->genreService->getAllGenres();
+        $directors = $this->directorService->getAllDirectors();
+        $actors = $this->actorService->getAllActors();
+        echo $this->twig->render('addmovie.html.twig', ["genres" => $genres, "directors" => $directors, "actors" => $actors]);
     }
 }

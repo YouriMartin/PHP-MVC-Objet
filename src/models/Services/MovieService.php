@@ -50,8 +50,8 @@ class MovieService
         $movie->setDirector($director);
 
         $actors = $this->actorDao->findByMovie($id);
-        //  $movie->setActor($actors);
-        foreach ($actors as $actor) {
+         //$movie->setActor($actors);
+       foreach ($actors as $actor) {
             $movie->addActor($actor);
         }
 
@@ -65,13 +65,16 @@ class MovieService
 
         $movie = $this->movieDao->createObjectFromFields($movieData);
 
-        $genre = $this->genreDao->findByMovie($movieData['genre']);
+        $genre = $this->genreDao->findById($movieData['genre_id']);
         $movie->setGenre($genre);
 
-       
-        $director = $this->directorDao->findByMovie($movieData['director']);
+
+        $director = $this->directorDao->findById($movieData['director_id']);
         $movie->setDirector($director);
+
+       
 
         $this->movieDao->create($movie);
     }
+    
 }

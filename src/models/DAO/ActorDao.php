@@ -44,11 +44,8 @@ class ActorDao extends BaseDao
         $res = $stmt->execute([':movieId' => $movieId]);
 
         if ($res) {
-            $actors = [];
-            while ($row = $stmt->fetch(\PDO::FETCH_ASSOC)) {
-                $actors[] = $this->createObjectFromFields($row);
-            }
-            return $actors;
+
+            return  $stmt->fetchAll(\PDO::FETCH_CLASS, Actor::class);
         } else {
             throw new \PDOException($stmt->errorInfo()[2]);
         }

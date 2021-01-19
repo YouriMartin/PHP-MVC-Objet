@@ -11,7 +11,7 @@ $loader = new FilesystemLoader(__DIR__ . '/src/views');
 $twig = new Environment($loader, ['cache' => false]);
 
 $fc = new FrontController($twig);
-$bc = new BackController($twig);
+$bc = new BackController();
 
 $base = dirname($_SERVER['PHP_SELF']);
 
@@ -62,9 +62,13 @@ $klein->respond('GET', '/movies/[:id]', function ($request) use ($fc) {
     $fc->movie($request->id);
 });
 
+$klein->respond('GET', '/addFMovie', function () use ($fc) {
+    $fc->Formaddmovie();
+});
 
-$klein->respond('POST', '/addMovie', function($request,$post) use($bc) {
+$klein->respond('POST', '/addMovie', function ($request) use ($bc, $fc) {
     $bc->addMovie($request->paramsPost());
+    $fc->acceuil();
 });
 
 $klein->dispatch();

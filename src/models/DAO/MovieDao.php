@@ -73,4 +73,5 @@ class MovieDao extends BaseDao
             throw new \PDOException($stmt->errorInfo()[2]);
         }
     }
+    
 }

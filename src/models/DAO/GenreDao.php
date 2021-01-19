@@ -7,6 +7,21 @@ use PhpMvcObjet\models\Entities\Genre;
 class GenreDao extends BaseDao
 {
 
+    public function findById($id)
+    {
+        $stmt = $this->db->prepare("SELECT * FROM genre WHERE id = :id");
+        $res = $stmt->execute([':id' => $id]);
+
+        if($res) {
+           
+            return $stmt->fetchObject(Genre::class); 
+            // Genre::class équivalent à mvcobjet\Models\Entities\Genre
+            // fetchObject lit une ligne à la fois et la retourne comme un objet
+            // qui ici est créé sous Entities
+        } else {
+            throw new \PDOException($stmt->errorInfo()[2]);
+        }
+    }
     public function findAll()
     {
         $stmt = $this->db->prepare("SELECT * FROM genre ");
